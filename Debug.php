@@ -3,6 +3,8 @@
  * Error handler & debuger class
  */
 
+namespace orey\debug;
+
 class Debug
 {
     public function __construct()
