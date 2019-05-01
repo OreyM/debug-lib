@@ -183,7 +183,7 @@ class Debug
     protected function errorsLog ( $errno, $errstr, $errfile, $errline )
     {
         $errLogStr =
-            '[' . date( 'Y-m-d H:i:s' ) . '] Текст ошибки: ' . $errstr . ' Файл: ' . $errfile . ' | Строка: ' . $errline;
+            '[' . date( 'Y-m-d H:i:s' ) . '] Error text: ' . $errstr . ' File: ' . $errfile . ' | Line: ' . $errline;
 
 //        error_log( $errLogStr . "\n", 3, '/log/error.log');
     }
@@ -267,27 +267,28 @@ class Debug
                 case 'NULL':
                     $debugInfo = [
                         'varType' => gettype( $data ),
-                        'addInfoType' => ' | Переменная без значения',
+                        'addInfoType' => ' | Variable without value',
                         'var' => 'NULL'
                     ];
                 break;
                 case 'resource':
                     $debugInfo = [
                         'varType' => gettype( $data ),
-                        'addInfoType' => ' | Cсылка на внешний ресурс',
+                        'addInfoType' => ' | Link to external resource',
                         'var' => get_resource_type($data)
                     ];
                 break;
                 case 'unknown type':
                     $debugInfo = [
                         'varType' => gettype( $data ),
-                        'addInfoType' => ' | Неизвестный тип данных',
+                        'addInfoType' => ' | Unknown data type',
                         'var' => FALSE
                     ];
                 break;
                 case 'array':
                     $newArray = array();
-                    $newArray[] = '<details open class="offset"><summary class="array">[Массив] (Размер: ' . count($data) . ')</summary>';
+                    $newArray[] = '<details open class="offset"><summary class="array">[Array] (Length: ' . count
+                        ($data) . ')</summary>';
 
                     $newArray[] = '<table><tbody>';
                     self::varExtract ( $data, $newArray );
@@ -295,14 +296,15 @@ class Debug
 
                     $debugInfo = [
                         'varType' => gettype( $data ),
-                        'addInfoType' => ' | Массив',
+                        'addInfoType' => ' | Array',
                         'var' => $newArray
                     ];
 
                 break;
                 case 'object':
                     $newArray = array();
-                    $newArray[] = '<details open class="offset"><summary class="array">{Объект} (Размер: ' . count($data) . ')</summary>';
+                    $newArray[] = '<details open class="offset"><summary class="array">{Object} (Length: ' . count
+                        ($data) . ')</summary>';
 
                     $newArray[] = '<table><tbody>';
                     self::varExtract ( $data, $newArray );
@@ -310,7 +312,7 @@ class Debug
 
                     $debugInfo = [
                         'varType' => gettype( $data ),
-                        'addInfoType' => ' | Объект',
+                        'addInfoType' => ' | Object',
                         'var' => $newArray
                     ];
 
